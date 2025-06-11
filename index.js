@@ -69,7 +69,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // 🔐 REGISTRO
-app.post("/register", async (req, res) => {
+app.post("users", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
@@ -90,7 +90,7 @@ app.post("/register", async (req, res) => {
 });
 
 // 🔐 LOGIN
-app.post("/login", async (req, res) => {
+app.post("/users", async (req, res) => {
   const { email, password } = req.body;
 
   try {
