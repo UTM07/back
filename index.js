@@ -118,3 +118,19 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "Error al iniciar sesión." });
   }
 });
+
+
+app.get("/fix-columns", async (req, res) => {
+  try {
+    await pool.query(`
+      ALTER TABLE users
+        ALTER COLUMN name TYPE TEXT,
+        ALTER COLUMN email TYPE TEXT,
+        ALTER COLUMN password TYPE TEXT;
+    `);
+    res.send("✅ Columnas actualizadas a TEXT correctamente.");
+  } catch (err) {
+    console.error("Error al actualizar columnas:", err.message);
+    res.status(500).send("❌ Error al modificar columnas.");
+  }
+});
